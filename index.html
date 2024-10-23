@@ -43,12 +43,20 @@
             list-style: none;
             padding: 0;
             display: flex;
-            gap: 15px;
+            gap: 15px; /* Space between icons */
+            margin-top: 10px; /* Add some space above the icons */
+        }
+        .social-icons li {
+            display: inline; /* Ensure list items are inline */
         }
         .social-icons li a {
             text-decoration: none;
             color: #000; /* Change to your desired color */
             font-size: 24px; /* Icon size */
+            transition: color 0.3s; /* Smooth color transition on hover */
+        }
+        .social-icons li a:hover {
+            color: #007bff; /* Change hover color as desired */
         }
     </style>
 </head>
