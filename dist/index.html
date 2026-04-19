@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Lamberth Rumpaidus - Cyberpunk 3D Portfolio. Creative Developer and Security Specialist." />
+    <!-- Modern Cyberpunk Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+    
+    <title>Lamberth Rumpaidus | Cyber Portfolio</title>
+    <script type="module" crossorigin src="/assets/index-74bedaa4.js"></script>
+    <link rel="stylesheet" href="/assets/index-cded22dc.css">
+  </head>
+  <body class="cyber-theme">
+    <!-- Loader -->
+    <div id="loader-wrapper">
+      <div class="cyber-loader">
+        <div class="spinner"></div>
+        <div class="glitch-text" data-text="INITIALIZING SYSTEM...">INITIALIZING SYSTEM...</div>
+      </div>
+    </div>
+
+    <!-- 3D Canvas Background -->
+    <div class="experience">
+      <canvas class="experience-canvas"></canvas>
+    </div>
+
+    <!-- UI Overlay -->
+    <div class="ui-layer">
+      <!-- Header / Logo -->
+      <header>
+        <a href="#" id="logo" aria-label="Home" data-camera="home">
+          <span class="neon-text">LAMBERTH<span class="magenta">_</span>SYS</span>
+        </a>
+        <nav class="main-nav">
+          <ul>
+            <li>
+              <a href="https://github.com/lamberthrumpaidus" target="_blank" aria-label="GitHub Profile" class="cyber-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Side Navigation -->
+      <nav class="side-nav">
+        <ul>
+          <li>
+            <a href="#" id="about-menu" class="cyber-btn" data-camera="about">
+              <span class="btn-content">ABOUT</span>
+              <span class="btn-glitch"></span>
+            </a>
+          </li>
+          <li>
+            <a href="#" id="projects-menu" class="cyber-btn" data-camera="projects">
+              <span class="btn-content">PROJECTS</span>
+              <span class="btn-glitch"></span>
+            </a>
+          </li>
+          <li class="contact-menu">
+            <a href="mailto:lamberthrumpaidus@gmail.com" id="contact-btn" class="cyber-btn magenta-btn">
+              <span class="btn-content">CONNECT</span>
+              <span class="btn-glitch"></span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Content Panels -->
+      <main>
+        <button id="close-btn" class="cyber-close" style="display: none">
+          <span>X</span> RETURN
+        </button>
+
+        <section id="panel-about" class="cyber-panel hidden">
+          <div class="panel-border"></div>
+          <h1 class="panel-title">LAMBERTH RUMPAIDUS</h1>
+          <h2 class="panel-subtitle">CREATIVE DEVELOPER // CYBER SECURITY</h2>
+          <div class="panel-content">
+            <p>Hello, saya Lam. Saya adalah seorang pengembang web yang bersemangat dalam membangun pengalaman digital yang mutakhir.</p>
+            <p>Fokus saya adalah menggabungkan estetika desain tingkat tinggi dengan performa dan keamanan sistem.</p>
+            <div class="skills-grid">
+              <span class="skill-tag">FRONTEND</span>
+              <span class="skill-tag">THREE.JS</span>
+              <span class="skill-tag">PEN-TESTING</span>
+              <span class="skill-tag">UI/UX</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="panel-projects" class="cyber-panel hidden">
+          <div class="panel-border"></div>
+          <h1 class="panel-title">PROJECT DATABANKS</h1>
+          <div class="projects-grid">
+            <a href="https://www.spaze.social/" target="_blank" class="project-card">
+              <div class="card-image" style="background-image: url('textures/project-spaze.webp');"></div>
+              <div class="card-info">
+                <h3>SPAZE</h3>
+                <span>ACCESS LINK</span>
+              </div>
+            </a>
+            <a href="https://myteachers.com.au/" target="_blank" class="project-card">
+              <div class="card-image" style="background-image: url('textures/project-myteachers.jpg');"></div>
+              <div class="card-info">
+                <h3>MYTEACHERS</h3>
+                <span>ACCESS LINK</span>
+              </div>
+            </a>
+            <a href="https://wholesale.com.np/" target="_blank" class="project-card">
+              <div class="card-image" style="background-image: url('textures/project-wholesale.jpg');"></div>
+              <div class="card-info">
+                <h3>WHOLESALE</h3>
+                <span>ACCESS LINK</span>
+              </div>
+            </a>
+            <a href="https://www.peloterosenlaweb.com/" target="_blank" class="project-card">
+              <div class="card-image" style="background-image: url('textures/project-pelotero.jpg');"></div>
+              <div class="card-info">
+                <h3>PELOTERO</h3>
+                <span>ACCESS LINK</span>
+              </div>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <!-- Decorative Cyber Elements -->
+      <div class="scanlines"></div>
+      <div class="vignette"></div>
+      
+      <footer>
+        <div class="footer-content">
+          SYSTEM.BUILD // DESIGNED & DEVELOPED BY LAMBERTH RUMPAIDUS // V 2.0
+        </div>
+      </footer>
+    </div>
+
+    
+  </body>
+</html>
