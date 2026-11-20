@@ -39,6 +39,7 @@
  full.onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch{notify("Layar penuh tidak tersedia.");}};
  const help=$("pj-help");
  const dialog=$("pj-shortcuts");
+ if (dialog && dialog.parentElement !== document.body) document.body.append(dialog);
  help.onclick=()=>{if(dialog.showModal)dialog.showModal();else dialog.hidden=false;};
  $("pj-shortcuts-close").onclick=()=>{if(dialog.close)dialog.close();else dialog.hidden=true;};
  function go(id){
