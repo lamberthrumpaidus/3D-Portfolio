@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="../brand-lr.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Lamberth Rumpaidus - Cyberpunk 3D Portfolio. Creative Developer and Security Specialist." />
     <!-- Modern Cyberpunk Fonts -->
@@ -11,7 +11,8 @@
     <title>Lamberth Rumpaidus | Cyber Portfolio</title>
     <script type="module" crossorigin src="/assets/index-74bedaa4.js"></script>
     <link rel="stylesheet" href="/assets/index-cded22dc.css">
-  </head>
+  <style>/* L/R 2026 cyber-futuristic interface */
+:root{--lr-mint:#00e5bc;--lr-stroke:rgba(0,222,195,.27)}.lr-cyber-monogram{display:block;width:clamp(90px,14vw,155px);height:auto;max-height:80px;object-fit:contain;filter:drop-shadow(0 0 18px rgba(0,235,185,.4));transition:transform .22s,filter .22s}#logo:hover .lr-cyber-monogram{transform:translateY(-2px);filter:drop-shadow(0 0 25px rgba(0,235,185,.8))}header{backdrop-filter:blur(16px)}.main-nav a,.side-nav a{transition:color .18s,transform .18s}.main-nav a:hover,.side-nav a:hover{color:var(--lr-mint);transform:translateY(-2px)}.cyber-panel{border-color:var(--lr-stroke)!important;box-shadow:0 24px 75px #0007,0 0 45px #00c9aa13!important;backdrop-filter:blur(20px)}.footer-content{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;text-align:center}.lr-cyber-footer-mark{display:inline-flex;align-items:center;border:1px solid var(--lr-stroke);border-radius:12px;padding:3px 9px;background:rgba(8,28,37,.76)}.lr-cyber-footer-mark img{width:85px;height:44px;object-fit:contain}.lr-system-caption{font-size:clamp(9px,1vw,12px);letter-spacing:.12em;color:#8ddace}a:focus-visible,button:focus-visible{outline:2px solid var(--lr-mint);outline-offset:3px}@media(max-width:650px){.lr-cyber-monogram{width:90px}.footer-content{gap:6px}.lr-cyber-footer-mark img{width:65px;height:34px}.lr-system-caption{letter-spacing:.04em}}@media(prefers-reduced-motion:reduce){.lr-cyber-monogram,.main-nav a,.side-nav a{transition:none!important}}</style></head>
   <body class="cyber-theme">
     <!-- Loader -->
     <div id="loader-wrapper">
@@ -31,7 +32,7 @@
       <!-- Header / Logo -->
       <header>
         <a href="#" id="logo" aria-label="Home" data-camera="home">
-          <span class="neon-text">LAMBERTH<span class="magenta">_</span>SYS</span>
+          <img class="lr-cyber-monogram" src="../brand-lr.svg" alt="L/R — Lamberth Rumpaidus" width="155" height="80">
         </a>
         <nav class="main-nav">
           <ul>
@@ -134,7 +135,7 @@
       
       <footer>
         <div class="footer-content">
-          SYSTEM.BUILD // DESIGNED & DEVELOPED BY LAMBERTH RUMPAIDUS // V 2.0
+          <a class="lr-cyber-footer-mark" href="https://github.com/lamberthrumpaidus" target="_blank" rel="noopener noreferrer" aria-label="L/R di GitHub"><img src="../brand-lr.svg" alt="L/R — Lamberth Rumpaidus" width="105" height="57"></a><span class="lr-system-caption">SYSTEM.BUILD // CREATIVE DIGITAL EXPERIENCE</span>
         </div>
       </footer>
     </div>
