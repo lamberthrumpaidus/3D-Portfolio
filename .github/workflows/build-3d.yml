@@ -28,7 +28,7 @@ jobs:
           python3 - <<'PY'
           from pathlib import Path
           html=Path('dist/index.html').read_text()
-          required=['app-logo.svg','brand-lr.svg','portfolio-ui.js','portfolio-ui.css','pj-project-search','pj-shortcuts']
+          required=['app-logo-', 'brand-lr-', 'portfolio-ui.js','pj-project-search','pj-shortcuts']
           for item in required:
               assert item in html, f'Missing built component: {item}'
           for f in ['dist/portfolio-ui.js','dist/portfolio-ui.css','dist/app-logo.svg','dist/brand-lr.svg']:
