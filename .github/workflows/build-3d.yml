@@ -15,6 +15,9 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+concurrency:
+  group: portfolio-3d-build
+  cancel-in-progress: false
 jobs:
   build:
     runs-on: ubuntu-latest
