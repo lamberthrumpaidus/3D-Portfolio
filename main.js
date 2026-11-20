@@ -3,7 +3,6 @@ import * as THREE from "three";
 import gsap from "gsap";
 import { OrbitControls } from "three/addons/controls/OrbitControls";
 
-// DOM Elements
 const canvas = document.querySelector(".experience-canvas");
 const loader = document.getElementById("loader-wrapper");
 const aboutMenu = document.getElementById("about-menu");
@@ -13,29 +12,26 @@ const logoBtn = document.getElementById("logo");
 const aboutPanel = document.getElementById("panel-about");
 const projectsPanel = document.getElementById("panel-projects");
 
-// State
 let currentSection = "home";
 
-// Scene Setup
 const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x020202);
-scene.fog = new THREE.FogExp2(0x020202, 0.05);
+scene.background = new THREE.Color(0x071320);
+scene.fog = new THREE.FogExp2(0x071320, 0.042);
 
-// Camera Setup
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(window.innerWidth < 700 ? 64 : 75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const defaultCameraPos = { x: 0, y: 2, z: 8 };
 camera.position.set(defaultCameraPos.x, defaultCameraPos.y, defaultCameraPos.z);
 
-// Renderer Setup
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
-  antialias: true,
+  antialias: window.devicePixelRatio <= 1.8,
   alpha: false
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+const safePixelRatio = () => Math.min(window.devicePixelRatio || 1, window.innerWidth < 760 ? 1.4 : 1.8);
+renderer.setPixelRatio(safePixelRatio());
+renderer.outputEncoding = THREE.sRGBEncoding;
 
-// Controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.dampingFactor = 0.05;
@@ -44,22 +40,15 @@ controls.enablePan = false;
 controls.minPolarAngle = Math.PI / 3;
 controls.maxPolarAngle = Math.PI / 2 + 0.1;
 
-// Colors
-const cyberCyan = new THREE.Color(0x00f0ff);
-const cyberMagenta = new THREE.Color(0xff003c);
+const cyberCyan = new THREE.Color(0x10ebce);
+const cyberMagenta = new THREE.Color(0xab6afc);
 
-// ----------------------------------------------------------------
-// PROCEDURAL ENVIRONMENT BUILD
-// ----------------------------------------------------------------
 
-// 1. Endless Wireframe Grid Terrain
 const gridGeometry = new THREE.PlaneGeometry(100, 100, 40, 40);
-// Displace vertices to make it look like a digital landscape
 const positionAttr = gridGeometry.attributes.position;
 for (let i = 0; i < positionAttr.count; i++) {
   const x = positionAttr.getX(i);
   const y = positionAttr.getY(i);
-  // Add some perlin-like displacement based on sin waves
   const z = Math.sin(x * 0.5) * Math.cos(y * 0.5) * 0.5;
   positionAttr.setZ(i, z);
 }
@@ -76,7 +65,6 @@ grid.rotation.x = -Math.PI / 2;
 grid.position.y = -2;
 scene.add(grid);
 
-// 2. Central Core (Glowing Torus Knot)
 const coreGroup = new THREE.Group();
 
 const coreGeometry = new THREE.TorusKnotGeometry(1.5, 0.4, 128, 32);
@@ -89,7 +77,6 @@ const coreMaterial = new THREE.MeshBasicMaterial({
 const core = new THREE.Mesh(coreGeometry, coreMaterial);
 coreGroup.add(core);
 
-// Inner Core solid
 const innerCoreGeo = new THREE.IcosahedronGeometry(1, 1);
 const innerCoreMat = new THREE.MeshBasicMaterial({
   color: 0x111111,
@@ -100,14 +87,12 @@ coreGroup.add(innerCore);
 
 scene.add(coreGroup);
 
-// 3. Floating Data Particles
-const particleCount = 1000;
+const particleCount = window.innerWidth < 760 ? 400 : 820;
 const particleGeometry = new THREE.BufferGeometry();
 const particlePositions = new Float32Array(particleCount * 3);
 const particleColors = new Float32Array(particleCount * 3);
 
 for (let i = 0; i < particleCount; i++) {
-  // Random positions in a cylinder-like volume
   const radius = 2 + Math.random() * 20;
   const angle = Math.random() * Math.PI * 2;
   const x = Math.cos(angle) * radius;
@@ -118,7 +103,6 @@ for (let i = 0; i < particleCount; i++) {
   particlePositions[i * 3 + 1] = y;
   particlePositions[i * 3 + 2] = z;
 
-  // Alternate between cyan and magenta
   const color = Math.random() > 0.5 ? cyberCyan : cyberMagenta;
   particleColors[i * 3] = color.r;
   particleColors[i * 3 + 1] = color.g;
@@ -138,44 +122,36 @@ const particleMaterial = new THREE.PointsMaterial({
 const particles = new THREE.Points(particleGeometry, particleMaterial);
 scene.add(particles);
 
-// 4. Lights (though materials are mostly Basic, we can add some point lights for specific effects if needed)
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
 scene.add(ambientLight);
 
-// ----------------------------------------------------------------
-// ANIMATION LOOP
-// ----------------------------------------------------------------
 const clock = new THREE.Clock();
 
 function animate() {
   requestAnimationFrame(animate);
+  if (document.hidden) return;
   const elapsedTime = clock.getElapsedTime();
+  const reducedMotion = document.documentElement.dataset.pjmotion === "true" || matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Rotate Core
-  core.rotation.x = elapsedTime * 0.2;
-  core.rotation.y = elapsedTime * 0.3;
-  innerCore.rotation.y = -elapsedTime * 0.1;
-  innerCore.rotation.x = -elapsedTime * 0.2;
+  if (!reducedMotion) {
+    core.rotation.x = elapsedTime * 0.2;
+    core.rotation.y = elapsedTime * 0.3;
+    innerCore.rotation.y = -elapsedTime * 0.1;
+    innerCore.rotation.x = -elapsedTime * 0.2;
+  }
 
-  // Float Core
-  coreGroup.position.y = Math.sin(elapsedTime * 0.5) * 0.5;
+  coreGroup.position.y = reducedMotion ? 0 : Math.sin(elapsedTime * 0.5) * 0.5;
 
-  // Scroll Grid
-  grid.position.z = (elapsedTime * 2) % 2;
+  grid.position.z = reducedMotion ? 0 : (elapsedTime * 2) % 2;
 
-  // Rotate particles slowly
-  particles.rotation.y = elapsedTime * 0.05;
+  if (!reducedMotion) particles.rotation.y = elapsedTime * 0.05;
 
   controls.update();
   renderer.render(scene, camera);
 }
 animate();
 
-// ----------------------------------------------------------------
-// UI & CAMERA INTERACTION
-// ----------------------------------------------------------------
 
-// Remove loader once initialized
 setTimeout(() => {
   loader.style.opacity = 0;
   setTimeout(() => {
@@ -192,19 +168,18 @@ function hideAllPanels() {
 function moveToSection(targetPos, targetLookAt, panelToShow) {
   hideAllPanels();
   
-  // Disable controls temporarily during animation
   controls.enabled = false;
+  gsap.killTweensOf(camera.position);
+  gsap.killTweensOf(controls.target);
   
-  // Animate Camera Position
   gsap.to(camera.position, {
     x: targetPos.x,
     y: targetPos.y,
     z: targetPos.z,
-    duration: 1.5,
+    duration: matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1.1,
     ease: "power3.inOut"
   });
 
-  // Animate Camera Target (LookAt)
   gsap.to(controls.target, {
     x: targetLookAt.x,
     y: targetLookAt.y,
@@ -224,7 +199,6 @@ function moveToSection(targetPos, targetLookAt, panelToShow) {
   });
 }
 
-// Event Listeners
 aboutMenu.addEventListener("click", (e) => {
   e.preventDefault();
   currentSection = "about";
@@ -261,9 +235,11 @@ const returnHome = (e) => {
 closeBtn.addEventListener("click", returnHome);
 logoBtn.addEventListener("click", returnHome);
 
-// Handle Window Resize
 window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
+  camera.fov = window.innerWidth < 700 ? 64 : 75;
+  camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(safePixelRatio());
 });
