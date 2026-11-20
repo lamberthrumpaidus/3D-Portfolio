@@ -17,7 +17,9 @@ jobs:
         with:
           node-version: '22'
       - name: Install project dependencies
-        run: npm install --no-audit --no-fund
+        run: |
+          rm -rf node_modules
+          npm install --no-audit --no-fund
       - name: Compile updated 3D source without deleting existing models
         run: npm run build -- --emptyOutDir false
       - name: Bundle app and creator marks plus interaction utilities
