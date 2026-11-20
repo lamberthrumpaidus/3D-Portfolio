@@ -7,7 +7,7 @@
   color-scheme: dark;
   background-color: #050505;
 
-  /* Cyber theme variables */
+   
   --color-text: #e0f8ff;
   --color-bg: #050505;
   --accent-cyan: #00f0ff;
@@ -44,7 +44,7 @@ h1, h2, h3, h4, h5, h6, .neon-text {
   letter-spacing: 2px;
 }
 
-/* 3D Canvas */
+ 
 .experience {
   position: fixed;
   top: 0;
@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, h6, .neon-text {
   outline: none;
 }
 
-/* UI Layer Base */
+ 
 .ui-layer {
   position: fixed;
   top: 0;
@@ -68,17 +68,17 @@ h1, h2, h3, h4, h5, h6, .neon-text {
   width: 100%;
   height: 100%;
   z-index: 10;
-  pointer-events: none; /* Let clicks pass through by default */
+  pointer-events: none;  
   display: flex;
   flex-direction: column;
 }
 
-/* Enable pointer events only for interactive UI elements */
+ 
 header, .side-nav, .cyber-panel, .cyber-close, .cyber-loader {
   pointer-events: auto;
 }
 
-/* Header & Nav */
+ 
 header {
   display: flex;
   justify-content: space-between;
@@ -116,7 +116,7 @@ header {
   filter: drop-shadow(0 0 10px var(--color-text));
 }
 
-/* Side Navigation */
+ 
 .side-nav {
   position: absolute;
   bottom: 60px;
@@ -134,7 +134,7 @@ header {
   align-items: flex-end;
 }
 
-/* Cyber Buttons */
+ 
 .cyber-btn {
   position: relative;
   display: inline-block;
@@ -189,7 +189,7 @@ header {
   box-shadow: inset 0 0 20px rgba(255, 0, 60, 0.4), 0 0 20px rgba(255, 0, 60, 0.6);
 }
 
-/* UI Panels */
+ 
 main {
   position: absolute;
   top: 50%;
@@ -295,7 +295,7 @@ main {
   border-radius: 2px;
 }
 
-/* Projects Grid */
+ 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -363,7 +363,7 @@ main {
   font-size: 0.8rem;
 }
 
-/* Close Button */
+ 
 .cyber-close {
   position: absolute;
   top: -60px;
@@ -402,7 +402,7 @@ main {
   box-shadow: 0 0 15px var(--accent-magenta);
 }
 
-/* Effects overlays */
+ 
 .scanlines {
   position: fixed;
   top: 0;
@@ -427,7 +427,7 @@ main {
   z-index: 49;
 }
 
-/* Footer */
+ 
 footer {
   position: absolute;
   bottom: 20px;
@@ -438,7 +438,7 @@ footer {
   letter-spacing: 2px;
 }
 
-/* Loader */
+ 
 #loader-wrapper {
   position: fixed;
   top: 0;
@@ -503,7 +503,7 @@ footer {
   50% { opacity: 0; }
 }
 
-/* Responsive */
+ 
 @media (max-width: 992px) {
   header {
     padding: 15px 20px;

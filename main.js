@@ -203,8 +203,8 @@ aboutMenu.addEventListener("click", (e) => {
   e.preventDefault();
   currentSection = "about";
   moveToSection(
-    { x: -5, y: 1, z: 4 }, // Camera moves left
-    { x: -2, y: 0, z: 0 }, // Look slightly left
+    { x: -5, y: 1, z: 4 }, 
+    { x: -2, y: 0, z: 0 }, 
     aboutPanel
   );
 });
@@ -213,8 +213,8 @@ projectsMenu.addEventListener("click", (e) => {
   e.preventDefault();
   currentSection = "projects";
   moveToSection(
-    { x: 5, y: 3, z: 5 },  // Camera moves right and up
-    { x: 2, y: 0, z: 0 },  // Look slightly right
+    { x: 5, y: 3, z: 5 },  
+    { x: 2, y: 0, z: 0 },  
     projectsPanel
   );
 });
