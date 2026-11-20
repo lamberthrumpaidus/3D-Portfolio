@@ -4,6 +4,14 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/build-3d.yml"
+      - "main.js"
+      - "index.html"
+      - "style.css"
+      - "portfolio-ui.js"
+      - "portfolio-ui.css"
+      - "app-logo.svg"
+      - "brand-lr.svg"
+      - "package.json"
   workflow_dispatch:
 permissions:
   contents: write
