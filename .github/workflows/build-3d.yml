@@ -1,0 +1,47 @@
+name: Build verified 3D Portfolio
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/build-3d.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install project dependencies
+        run: npm install --no-audit --no-fund
+      - name: Compile updated 3D source without deleting existing models
+        run: npm run build -- --emptyOutDir false
+      - name: Bundle app and creator marks plus interaction utilities
+        run: |
+          cp app-logo.svg brand-lr.svg portfolio-ui.js portfolio-ui.css dist/
+          python3 - <<'PY'
+          from pathlib import Path
+          html=Path('dist/index.html').read_text()
+          required=['app-logo.svg','brand-lr.svg','portfolio-ui.js','portfolio-ui.css','pj-project-search','pj-shortcuts']
+          for item in required:
+              assert item in html, f'Missing built component: {item}'
+          for f in ['dist/portfolio-ui.js','dist/portfolio-ui.css','dist/app-logo.svg','dist/brand-lr.svg']:
+              assert Path(f).stat().st_size>0, f
+          assert Path('dist/models/room.glb').exists(), '3D model unexpectedly missing'
+          print('3D build and preserved assets validated.')
+          PY
+      - name: Publish built assets back to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/
+          if git diff --cached --quiet; then
+            echo "Compiled distribution unchanged."
+          else
+            git commit -m "build: ship optimized 3D experience and project branding"
+            git push origin HEAD:main
+          fi
